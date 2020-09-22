@@ -10,8 +10,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d4d9590-ad0d-49aa-976d-96046a9192a5" name="Default Changelist" comment="initial lambda setup">
+    <list default="true" id="8d4d9590-ad0d-49aa-976d-96046a9192a5" name="Default Changelist" comment="add gitignore and README.md">
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/serverlessGoatJava/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/serverlessGoatJava/DependencyFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/serverlessGoatJava/apiGateway/ApiGatewayRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/serverlessGoatJava/apiGateway/Identity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/serverlessGoatJava/apiGateway/RequestContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/DependencyFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/de/codeshield/cloudscan/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/codeshield/cloudscan/serverless-goat-java/AppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +30,13 @@
   </component>
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,11 +59,43 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/android-sdk-macosx" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.Jenkins" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunManager">
+    <configuration name="AppTest.handleRequest_shouldReturnConstantValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Serverless-Goat-Java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.codeshield.cloudscan.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.codeshield.cloudscan" />
+      <option name="MAIN_CLASS_NAME" value="de.codeshield.cloudscan.AppTest" />
+      <option name="METHOD_NAME" value="handleRequest_shouldReturnConstantValue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BSP.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BSP.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.AppTest.handleRequest_shouldReturnConstantValue" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -58,7 +107,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1600780932916</updated>
-      <workItem from="1600780937618" duration="1033000" />
+      <workItem from="1600780937618" duration="1534000" />
+      <workItem from="1600782512541" duration="3005000" />
     </task>
     <task id="LOCAL-00001" summary="initial lambda setup">
       <created>1600781886697</created>
@@ -67,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600781886697</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add gitignore and README.md">
+      <created>1600782264403</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1600782264403</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -83,15 +140,49 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial lambda setup" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial lambda setup" />
+    <MESSAGE value="add gitignore and README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="add gitignore and README.md" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2392" y="75" key="Vcs.Push.Dialog.v2" timestamp="1600781888062">
+    <state x="2256" y="-3" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600782422071">
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
-    <state x="2392" y="75" key="Vcs.Push.Dialog.v2/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600781888062" />
+    <state x="2256" y="-3" key="#com.intellij.execution.impl.EditConfigurationsDialog/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600782422071" />
+    <state width="2470" height="409" key="GridCell.Tab.0.bottom" timestamp="1600782734074">
+      <screen x="1536" y="-373" width="2512" height="1417" />
+    </state>
+    <state width="2470" height="409" key="GridCell.Tab.0.bottom/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600782734074" />
+    <state width="2470" height="409" key="GridCell.Tab.0.center" timestamp="1600782734073">
+      <screen x="1536" y="-373" width="2512" height="1417" />
+    </state>
+    <state width="2470" height="409" key="GridCell.Tab.0.center/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600782734073" />
+    <state width="2470" height="409" key="GridCell.Tab.0.left" timestamp="1600782734072">
+      <screen x="1536" y="-373" width="2512" height="1417" />
+    </state>
+    <state width="2470" height="409" key="GridCell.Tab.0.left/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600782734072" />
+    <state width="2470" height="409" key="GridCell.Tab.0.right" timestamp="1600782734073">
+      <screen x="1536" y="-373" width="2512" height="1417" />
+    </state>
+    <state width="2470" height="409" key="GridCell.Tab.0.right/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600782734073" />
+    <state x="2330" y="-3" key="Maven.ArtifactSearchDialog" timestamp="1600784507137">
+      <screen x="1536" y="-373" width="2512" height="1417" />
+    </state>
+    <state x="2330" y="-3" key="Maven.ArtifactSearchDialog/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600784507137" />
+    <state x="2301" y="-26" key="SettingsEditor" timestamp="1600782491381">
+      <screen x="1536" y="-373" width="2512" height="1417" />
+    </state>
+    <state x="2301" y="-26" key="SettingsEditor/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600782491381" />
+    <state x="2392" y="75" key="Vcs.Push.Dialog.v2" timestamp="1600782265436">
+      <screen x="1536" y="-373" width="2512" height="1417" />
+    </state>
+    <state x="2392" y="75" key="Vcs.Push.Dialog.v2/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600782265436" />
+    <state x="2579" y="120" key="chooseDestDirectoryDialog" timestamp="1600785246893">
+      <screen x="1536" y="-373" width="2512" height="1417" />
+    </state>
+    <state x="2579" y="120" key="chooseDestDirectoryDialog/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600785246893" />
   </component>
 </project>
