@@ -4,6 +4,8 @@
 
 **To test the generated Lambda function locally with SAM CLI , you can run the following command.**
 
+Fist install sam: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html
+
 `sam local invoke`
 
 # Command used to create the lambda

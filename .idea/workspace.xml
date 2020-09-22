@@ -10,8 +10,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d4d9590-ad0d-49aa-976d-96046a9192a5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="8d4d9590-ad0d-49aa-976d-96046a9192a5" name="Default Changelist" comment="initial lambda setup">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,8 +58,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1600780932916</updated>
-      <workItem from="1600780937618" duration="884000" />
+      <workItem from="1600780937618" duration="1033000" />
     </task>
+    <task id="LOCAL-00001" summary="initial lambda setup">
+      <created>1600781886697</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600781886697</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -75,5 +83,15 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initial lambda setup" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial lambda setup" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2392" y="75" key="Vcs.Push.Dialog.v2" timestamp="1600781888062">
+      <screen x="1536" y="-373" width="2512" height="1417" />
+    </state>
+    <state x="2392" y="75" key="Vcs.Push.Dialog.v2/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600781888062" />
   </component>
 </project>
