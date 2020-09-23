@@ -62,7 +62,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="AWS Lambda.[Local] App">
     <configuration name="AppTest.handleRequest_shouldReturnConstantValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Serverless-Goat-Java" />
       <extension name="coverage">
@@ -87,8 +87,34 @@
         <option name="BSP.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="[Local] App" type="aws.lambda" factoryName="Local" temporary="true" nameIsGenerated="true">
+      <option name="credentialProviderId" value="profile:default" />
+      <option name="regionId" value="eu-central-1" />
+      <option name="debugHost" value="localhost" />
+      <option name="environmentVariables">
+        <map />
+      </option>
+      <option name="handler" value="de.codeshield.cloudscan.serverlessGoatJava.App" />
+      <option name="logicalFunctionName" />
+      <option name="memorySize" value="128" />
+      <option name="runtime" value="java8.al2" />
+      <option name="templateFile" />
+      <option name="timeout" value="300" />
+      <option name="useTemplate" value="false" />
+      <option name="input" />
+      <option name="inputIsFile" value="false" />
+      <sam>
+        <option name="additionalBuildArgs" />
+        <option name="additionalLocalArgs" />
+        <option name="buildInContainer" value="false" />
+        <option name="dockerNetwork" />
+        <option name="skipImagePull" value="false" />
+      </sam>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="AWS Lambda.[Local] App" />
         <item itemvalue="JUnit.AppTest.handleRequest_shouldReturnConstantValue" />
       </list>
     </recent_temporary>

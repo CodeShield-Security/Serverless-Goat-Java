@@ -7,6 +7,7 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
@@ -37,7 +38,7 @@ public class App implements RequestHandler<ApiGatewayRequest, Response> {
     // Initialize the SDK client outside of the handler method so that it can be reused for
     // subsequent invocations.
     // It is initialized when the class is loaded.
-    s3Client = DependencyFactory.s3Client();
+    s3Client = AmazonS3ClientBuilder.standard().withRegion(Regions.EU_CENTRAL_1).build();
 
     // acquire catdoc executable for later use
     Path outDir = Files.createTempDirectory(System.currentTimeMillis() + "");
