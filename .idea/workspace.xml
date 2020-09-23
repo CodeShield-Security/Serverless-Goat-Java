@@ -10,18 +10,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d4d9590-ad0d-49aa-976d-96046a9192a5" name="Default Changelist" comment="add gitignore and README.md">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/serverlessGoatJava/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/serverlessGoatJava/DependencyFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/serverlessGoatJava/apiGateway/ApiGatewayRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/serverlessGoatJava/apiGateway/Identity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/serverlessGoatJava/apiGateway/RequestContext.java" afterDir="false" />
+    <list default="true" id="8d4d9590-ad0d-49aa-976d-96046a9192a5" name="Default Changelist" comment="implement log method">
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/serverlessGoatJava/IOUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/catdoc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/DependencyFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/de/codeshield/cloudscan/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/codeshield/cloudscan/serverless-goat-java/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/serverlessGoatJava/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/serverlessGoatJava/App.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,12 +52,18 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/android-sdk-macosx" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="AppTest.handleRequest_shouldReturnConstantValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -108,7 +107,7 @@
       <option name="presentableId" value="Default" />
       <updated>1600780932916</updated>
       <workItem from="1600780937618" duration="1534000" />
-      <workItem from="1600782512541" duration="3005000" />
+      <workItem from="1600782512541" duration="6253000" />
     </task>
     <task id="LOCAL-00001" summary="initial lambda setup">
       <created>1600781886697</created>
@@ -124,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600782264403</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="implement log method">
+      <created>1600786057194</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1600786057194</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,7 +151,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial lambda setup" />
     <MESSAGE value="add gitignore and README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="add gitignore and README.md" />
+    <MESSAGE value="implement log method" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement log method" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2256" y="-3" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600782422071">
@@ -184,5 +191,9 @@
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
     <state x="2579" y="120" key="chooseDestDirectoryDialog/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600785246893" />
+    <state x="2530" y="80" key="extract.method.dialog" timestamp="1600852092226">
+      <screen x="1536" y="-373" width="2512" height="1417" />
+    </state>
+    <state x="2530" y="80" key="extract.method.dialog/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600852092226" />
   </component>
 </project>
