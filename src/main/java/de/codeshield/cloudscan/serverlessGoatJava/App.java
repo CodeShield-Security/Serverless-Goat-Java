@@ -7,8 +7,12 @@ import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import de.codeshield.cloudscan.serverlessGoatJava.apiGateway.ApiGatewayRequest;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.nio.file.Files;
@@ -63,13 +67,17 @@ public class App implements RequestHandler<ApiGatewayRequest, Response> {
       log(context, request);
 
       String documentUrl = request.getQueryStringParameters().get("document_url");
-      String txt = getDocumentText(documentUrl);
+      InputStream txt = getDocumentInputStream(documentUrl);
 
       // Lambda response max size is 6MB. The workaround is to upload result to S3 and redirect user
       // to the file.
       String key = UUID.randomUUID().toString();
-      // FIXME might not be public-read
-      s3Client.putObject(System.getenv("BUCKET_NAME"), key, txt);
+      ObjectMetadata objectMetadata = new ObjectMetadata();
+      objectMetadata.setContentType("text/html");
+
+      s3Client.putObject(
+          new PutObjectRequest(System.getenv("BUCKET_NAME"), key, txt, objectMetadata)
+              .withCannedAcl(CannedAccessControlList.PublicRead));
 
       String docLocation = String.format("%s/%s", System.getenv("BUCKET_URL"), key);
       return Response.status(302).header("Location", docLocation).build();
@@ -82,7 +90,7 @@ public class App implements RequestHandler<ApiGatewayRequest, Response> {
     }
   }
 
-  private String getDocumentText(String documentUrl) throws IOException {
+  private InputStream getDocumentInputStream(String documentUrl) throws IOException {
 
     String command =
         String.format(
@@ -90,6 +98,6 @@ public class App implements RequestHandler<ApiGatewayRequest, Response> {
             documentUrl, catdocExecutable.toAbsolutePath().toString());
 
     Process process = new ProcessBuilder("/bin/sh", "-c", command).start();
-    return com.amazonaws.util.IOUtils.toString(process.getInputStream());
+    return process.getInputStream();
   }
 }
