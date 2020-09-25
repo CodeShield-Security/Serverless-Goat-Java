@@ -20,6 +20,7 @@ Resources:
           Properties:
             Path: /
             Method: get
+
   FunctionConvert:
     Type: AWS::Serverless::Function
     Properties:
@@ -27,18 +28,18 @@ Resources:
       Handler: de.codeshield.cloudscan.App::handleRequest
       CodeUri: ./target/serverless-goat-java.jar
       ReservedConcurrentExecutions: 5
-    Environment:
-      Variables:
-        HOME: /var/task
-        TABLE_NAME: !Ref Table
-        BUCKET_NAME: !Ref Bucket
-        BUCKET_URL: !GetAtt Bucket.WebsiteURL
-    Events:
-      ApiConvert:
-        Type: Api
-        Properties:
-          Path: /api/convert
-          Method: get
+      Environment:
+        Variables:
+          HOME: /var/task
+          TABLE_NAME: !Ref Table
+          BUCKET_NAME: !Ref Bucket
+          BUCKET_URL: !GetAtt Bucket.WebsiteURL
+      Events:
+        ApiConvert:
+          Type: Api
+          Properties:
+            Path: /api/convert
+            Method: get
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref Table
@@ -47,15 +48,15 @@ Resources:
 
   Table:
     Type: AWS::Serverless::SimpleTable
-    Bucket:
-      Type: AWS::S3::Bucket
-      Properties:
-        AccessControl: PublicRead
-        WebsiteConfiguration:
-          IndexDocument: index.html
-          ErrorDocument: index.html
-  Outputs:
-    WebsiteURL:
-      Description: 'Website URL'
-      Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/${ServerlessRestApi.Stage}/'
+  Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+Outputs:
+  WebsiteURL:
+    Description: 'Website URL'
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/${ServerlessRestApi.Stage}/'
 

@@ -1,0 +1,7 @@
+{
+  "name": "Serverless-Goat-Frontend",
+  "description": "Frontend to invoke the vulnerable convert function. Copied from original serverless-goat repository‚",
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {}
+}

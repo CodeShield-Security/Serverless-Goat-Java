@@ -10,7 +10,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d4d9590-ad0d-49aa-976d-96046a9192a5" name="Default Changelist" comment="add frontend and sam configuration">
+    <list default="true" id="8d4d9590-ad0d-49aa-976d-96046a9192a5" name="Default Changelist" comment="update nodejs runtime">
+      <change afterPath="$PROJECT_DIR$/src/main/js/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/template.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -133,7 +134,7 @@
       <option name="presentableId" value="Default" />
       <updated>1600780932916</updated>
       <workItem from="1600780937618" duration="1534000" />
-      <workItem from="1600782512541" duration="12515000" />
+      <workItem from="1600782512541" duration="16581000" />
     </task>
     <task id="LOCAL-00001" summary="initial lambda setup">
       <created>1600781886697</created>
@@ -191,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601030206906</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="update nodejs runtime">
+      <created>1601030684812</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1601030684812</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,7 +226,8 @@
     <MESSAGE value="fix public-read setting by using a differten api for putObject" />
     <MESSAGE value="move s3  init to constructor" />
     <MESSAGE value="add frontend and sam configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="add frontend and sam configuration" />
+    <MESSAGE value="update nodejs runtime" />
+    <option name="LAST_COMMIT_MESSAGE" value="update nodejs runtime" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2427" y="-111" key="#[Local]_App" timestamp="1600855711637">
@@ -241,25 +250,29 @@
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
     <state width="415" height="466" key="DebuggerActiveHint/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600947150633" />
-    <state width="2470" height="409" key="GridCell.Tab.0.bottom" timestamp="1601030182688">
-      <screen x="1536" y="-373" width="2514" height="1417" />
+    <state width="2470" height="409" key="GridCell.Tab.0.bottom" timestamp="1601032377207">
+      <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
-    <state width="2470" height="502" key="GridCell.Tab.0.bottom/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600947470731" />
+    <state width="2470" height="409" key="GridCell.Tab.0.bottom/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1601032377207" />
+    <state width="2470" height="409" key="GridCell.Tab.0.bottom/1536.-373.2513.1417/0.23.1536.937@1536.-373.2513.1417" timestamp="1601031081862" />
     <state width="2470" height="409" key="GridCell.Tab.0.bottom/1536.-373.2514.1417/0.23.1536.937@1536.-373.2514.1417" timestamp="1601030182688" />
-    <state width="2470" height="409" key="GridCell.Tab.0.center" timestamp="1601030182687">
-      <screen x="1536" y="-373" width="2514" height="1417" />
+    <state width="2470" height="409" key="GridCell.Tab.0.center" timestamp="1601032377206">
+      <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
-    <state width="2470" height="502" key="GridCell.Tab.0.center/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600947470730" />
+    <state width="2470" height="409" key="GridCell.Tab.0.center/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1601032377206" />
+    <state width="2470" height="409" key="GridCell.Tab.0.center/1536.-373.2513.1417/0.23.1536.937@1536.-373.2513.1417" timestamp="1601031081861" />
     <state width="2470" height="409" key="GridCell.Tab.0.center/1536.-373.2514.1417/0.23.1536.937@1536.-373.2514.1417" timestamp="1601030182687" />
-    <state width="2470" height="409" key="GridCell.Tab.0.left" timestamp="1601030182686">
-      <screen x="1536" y="-373" width="2514" height="1417" />
+    <state width="2470" height="409" key="GridCell.Tab.0.left" timestamp="1601032377206">
+      <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
-    <state width="2470" height="502" key="GridCell.Tab.0.left/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600947470729" />
+    <state width="2470" height="409" key="GridCell.Tab.0.left/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1601032377205" />
+    <state width="2470" height="409" key="GridCell.Tab.0.left/1536.-373.2513.1417/0.23.1536.937@1536.-373.2513.1417" timestamp="1601031081860" />
     <state width="2470" height="409" key="GridCell.Tab.0.left/1536.-373.2514.1417/0.23.1536.937@1536.-373.2514.1417" timestamp="1601030182686" />
-    <state width="2470" height="409" key="GridCell.Tab.0.right" timestamp="1601030182687">
-      <screen x="1536" y="-373" width="2514" height="1417" />
+    <state width="2470" height="409" key="GridCell.Tab.0.right" timestamp="1601032377206">
+      <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
-    <state width="2470" height="502" key="GridCell.Tab.0.right/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600947470730" />
+    <state width="2470" height="409" key="GridCell.Tab.0.right/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1601032377206" />
+    <state width="2470" height="409" key="GridCell.Tab.0.right/1536.-373.2513.1417/0.23.1536.937@1536.-373.2513.1417" timestamp="1601031081861" />
     <state width="2470" height="409" key="GridCell.Tab.0.right/1536.-373.2514.1417/0.23.1536.937@1536.-373.2514.1417" timestamp="1601030182687" />
     <state width="2470" height="502" key="GridCell.Tab.1.bottom" timestamp="1600947470732">
       <screen x="1536" y="-373" width="2512" height="1417" />
@@ -285,10 +298,11 @@
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
     <state x="2301" y="-26" key="SettingsEditor/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600853801393" />
-    <state x="2393" y="75" key="Vcs.Push.Dialog.v2" timestamp="1601030208316">
-      <screen x="1536" y="-373" width="2514" height="1417" />
+    <state x="2393" y="75" key="Vcs.Push.Dialog.v2" timestamp="1601030686234">
+      <screen x="1536" y="-373" width="2513" height="1417" />
     </state>
     <state x="2392" y="75" key="Vcs.Push.Dialog.v2/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600855943804" />
+    <state x="2393" y="75" key="Vcs.Push.Dialog.v2/1536.-373.2513.1417/0.23.1536.937@1536.-373.2513.1417" timestamp="1601030686234" />
     <state x="2393" y="75" key="Vcs.Push.Dialog.v2/1536.-373.2514.1417/0.23.1536.937@1536.-373.2514.1417" timestamp="1601030208316" />
     <state width="1257" height="708" key="XDebugger.FullValuePopup" timestamp="1600946631083">
       <screen x="1536" y="-373" width="2512" height="1417" />
