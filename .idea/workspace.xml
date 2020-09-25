@@ -10,8 +10,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d4d9590-ad0d-49aa-976d-96046a9192a5" name="Default Changelist" comment="finish up java implementation of function">
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/serverlessGoatJava/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/serverlessGoatJava/App.java" afterDir="false" />
+    <list default="true" id="8d4d9590-ad0d-49aa-976d-96046a9192a5" name="Default Changelist" comment="move s3  init to constructor">
+      <change afterPath="$PROJECT_DIR$/src/main/js/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/js/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/de/codeshield/cloudscan/serverlessGoatJava/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/de/codeshield/cloudscan/serverless-goat-java/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/template.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/template.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +56,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/android-sdk-macosx" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/java/de/codeshield/cloudscan" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -58,21 +64,24 @@
     <property name="settings.editor.selected.configurable" value="google-java-format.settings" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="de.codeshield.cloudscan.serverlessGoatJava" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="AWS Lambda.[Local] App">
+  <component name="RunManager" selected="JUnit.AppTest.handleRequest_shouldReturnConstantValue">
     <configuration name="AppTest.handleRequest_shouldReturnConstantValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Serverless-Goat-Java" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="de.codeshield.cloudscan.*" />
+          <option name="PATTERN" value="de.codeshield.cloudscan.serverlessGoatJava.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="de.codeshield.cloudscan" />
-      <option name="MAIN_CLASS_NAME" value="de.codeshield.cloudscan.AppTest" />
+      <option name="PACKAGE_NAME" value="de.codeshield.cloudscan.serverlessGoatJava" />
+      <option name="MAIN_CLASS_NAME" value="de.codeshield.cloudscan.serverlessGoatJava.AppTest" />
       <option name="METHOD_NAME" value="handleRequest_shouldReturnConstantValue" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -114,8 +123,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="AWS Lambda.[Local] App" />
         <item itemvalue="JUnit.AppTest.handleRequest_shouldReturnConstantValue" />
+        <item itemvalue="AWS Lambda.[Local] App" />
       </list>
     </recent_temporary>
   </component>
@@ -130,7 +139,7 @@
       <option name="presentableId" value="Default" />
       <updated>1600780932916</updated>
       <workItem from="1600780937618" duration="1534000" />
-      <workItem from="1600782512541" duration="8027000" />
+      <workItem from="1600782512541" duration="12049000" />
     </task>
     <task id="LOCAL-00001" summary="initial lambda setup">
       <created>1600781886697</created>
@@ -167,7 +176,21 @@
       <option name="project" value="LOCAL" />
       <updated>1600855384767</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fix public-read setting by using a differten api for putObject">
+      <created>1600855695444</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1600855695444</updated>
+    </task>
+    <task id="LOCAL-00007" summary="move s3  init to constructor">
+      <created>1600855942496</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1600855942496</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,29 +214,67 @@
     <MESSAGE value="implement log method" />
     <MESSAGE value="implement catdoc command execution" />
     <MESSAGE value="finish up java implementation of function" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish up java implementation of function" />
+    <MESSAGE value="fix public-read setting by using a differten api for putObject" />
+    <MESSAGE value="move s3  init to constructor" />
+    <option name="LAST_COMMIT_MESSAGE" value="move s3  init to constructor" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="2427" y="-111" key="#[Local]_App" timestamp="1600855711637">
+      <screen x="1536" y="-373" width="2512" height="1417" />
+    </state>
+    <state x="2427" y="-111" key="#[Local]_App/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600855711637" />
     <state x="2256" y="-3" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600782422071">
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
     <state x="2256" y="-3" key="#com.intellij.execution.impl.EditConfigurationsDialog/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600782422071" />
-    <state width="2470" height="409" key="GridCell.Tab.0.bottom" timestamp="1600782734074">
+    <state x="2539" y="211" width="535" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1600946017958">
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
-    <state width="2470" height="409" key="GridCell.Tab.0.bottom/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600782734074" />
-    <state width="2470" height="409" key="GridCell.Tab.0.center" timestamp="1600782734073">
+    <state x="2539" y="211" width="535" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600946017958" />
+    <state x="2555" y="46" key="#xdebugger.evaluate" timestamp="1600946631748">
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
-    <state width="2470" height="409" key="GridCell.Tab.0.center/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600782734073" />
-    <state width="2470" height="409" key="GridCell.Tab.0.left" timestamp="1600782734072">
+    <state x="2555" y="46" key="#xdebugger.evaluate/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600946631748" />
+    <state width="415" height="466" key="DebuggerActiveHint" timestamp="1600947150633">
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
-    <state width="2470" height="409" key="GridCell.Tab.0.left/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600782734072" />
-    <state width="2470" height="409" key="GridCell.Tab.0.right" timestamp="1600782734073">
+    <state width="415" height="466" key="DebuggerActiveHint/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600947150633" />
+    <state width="2470" height="409" key="GridCell.Tab.0.bottom" timestamp="1601030182688">
+      <screen x="1536" y="-373" width="2514" height="1417" />
+    </state>
+    <state width="2470" height="502" key="GridCell.Tab.0.bottom/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600947470731" />
+    <state width="2470" height="409" key="GridCell.Tab.0.bottom/1536.-373.2514.1417/0.23.1536.937@1536.-373.2514.1417" timestamp="1601030182688" />
+    <state width="2470" height="409" key="GridCell.Tab.0.center" timestamp="1601030182687">
+      <screen x="1536" y="-373" width="2514" height="1417" />
+    </state>
+    <state width="2470" height="502" key="GridCell.Tab.0.center/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600947470730" />
+    <state width="2470" height="409" key="GridCell.Tab.0.center/1536.-373.2514.1417/0.23.1536.937@1536.-373.2514.1417" timestamp="1601030182687" />
+    <state width="2470" height="409" key="GridCell.Tab.0.left" timestamp="1601030182686">
+      <screen x="1536" y="-373" width="2514" height="1417" />
+    </state>
+    <state width="2470" height="502" key="GridCell.Tab.0.left/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600947470729" />
+    <state width="2470" height="409" key="GridCell.Tab.0.left/1536.-373.2514.1417/0.23.1536.937@1536.-373.2514.1417" timestamp="1601030182686" />
+    <state width="2470" height="409" key="GridCell.Tab.0.right" timestamp="1601030182687">
+      <screen x="1536" y="-373" width="2514" height="1417" />
+    </state>
+    <state width="2470" height="502" key="GridCell.Tab.0.right/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600947470730" />
+    <state width="2470" height="409" key="GridCell.Tab.0.right/1536.-373.2514.1417/0.23.1536.937@1536.-373.2514.1417" timestamp="1601030182687" />
+    <state width="2470" height="502" key="GridCell.Tab.1.bottom" timestamp="1600947470732">
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
-    <state width="2470" height="409" key="GridCell.Tab.0.right/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600782734073" />
+    <state width="2470" height="502" key="GridCell.Tab.1.bottom/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600947470732" />
+    <state width="2470" height="502" key="GridCell.Tab.1.center" timestamp="1600947470731">
+      <screen x="1536" y="-373" width="2512" height="1417" />
+    </state>
+    <state width="2470" height="502" key="GridCell.Tab.1.center/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600947470731" />
+    <state width="2470" height="502" key="GridCell.Tab.1.left" timestamp="1600947470731">
+      <screen x="1536" y="-373" width="2512" height="1417" />
+    </state>
+    <state width="2470" height="502" key="GridCell.Tab.1.left/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600947470731" />
+    <state width="2470" height="502" key="GridCell.Tab.1.right" timestamp="1600947470732">
+      <screen x="1536" y="-373" width="2512" height="1417" />
+    </state>
+    <state width="2470" height="502" key="GridCell.Tab.1.right/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600947470732" />
     <state x="2330" y="-3" key="Maven.ArtifactSearchDialog" timestamp="1600854917242">
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
@@ -222,17 +283,32 @@
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
     <state x="2301" y="-26" key="SettingsEditor/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600853801393" />
-    <state x="2392" y="75" key="Vcs.Push.Dialog.v2" timestamp="1600855386362">
+    <state x="2392" y="75" key="Vcs.Push.Dialog.v2" timestamp="1600855943804">
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
-    <state x="2392" y="75" key="Vcs.Push.Dialog.v2/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600855386362" />
-    <state x="2579" y="120" key="chooseDestDirectoryDialog" timestamp="1600785246893">
+    <state x="2392" y="75" key="Vcs.Push.Dialog.v2/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600855943804" />
+    <state width="1257" height="708" key="XDebugger.FullValuePopup" timestamp="1600946631083">
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
-    <state x="2579" y="120" key="chooseDestDirectoryDialog/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600785246893" />
+    <state width="1257" height="708" key="XDebugger.FullValuePopup/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600946631083" />
+    <state x="2579" y="120" key="chooseDestDirectoryDialog" timestamp="1600946000958">
+      <screen x="1536" y="-373" width="2512" height="1417" />
+    </state>
+    <state x="2579" y="120" key="chooseDestDirectoryDialog/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600946000958" />
     <state x="2530" y="80" key="extract.method.dialog" timestamp="1600852092226">
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
     <state x="2530" y="80" key="extract.method.dialog/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600852092226" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/de/codeshield/cloudscan/serverlessGoatJava/App.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

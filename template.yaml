@@ -1,19 +1,61 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    MemorySize: 3008
+    Timeout: 10
+
 Resources:
-  # See https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html
-  # for more info to see how to tune the lambda function configs based on your use case.
-  AppFunction:
+  FunctionFrontend:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: nodejs8.10
+      Handler: index.handler
+      CodeUri: src/main/js/
+      ReservedConcurrentExecutions: 5
+      Events:
+        ApiConvert:
+          Type: Api
+          Properties:
+            Path: /
+            Method: get
+  FunctionConvert:
     Type: AWS::Serverless::Function
     Properties:
       Runtime: java8
       Handler: de.codeshield.cloudscan.App::handleRequest
-      Timeout: 60
-      MemorySize: 512
       CodeUri: ./target/serverless-goat-java.jar
-      # Attach policies here to give the function permission to access other AWS resources if needed
-      # See: https://github.com/awslabs/serverless-application-model/blob/master/docs/policy_templates.rst
-      # eg:
-      #Policies:
-      # - S3ReadPolicy:
-      #     BucketName: test-bucket
+      ReservedConcurrentExecutions: 5
+    Environment:
+      Variables:
+        HOME: /var/task
+        TABLE_NAME: !Ref Table
+        BUCKET_NAME: !Ref Bucket
+        BUCKET_URL: !GetAtt Bucket.WebsiteURL
+    Events:
+      ApiConvert:
+        Type: Api
+        Properties:
+          Path: /api/convert
+          Method: get
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref Table
+        - S3FullAccessPolicy:
+            BucketName: !Ref Bucket
+
+  Table:
+    Type: AWS::Serverless::SimpleTable
+    Bucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        AccessControl: PublicRead
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: index.html
+  Outputs:
+    WebsiteURL:
+      Description: 'Website URL'
+      Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/${ServerlessRestApi.Stage}/'
+
