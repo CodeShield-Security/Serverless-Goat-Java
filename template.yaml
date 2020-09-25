@@ -10,7 +10,7 @@ Resources:
   FunctionFrontend:
     Type: AWS::Serverless::Function
     Properties:
-      Runtime: nodejs8.10
+      Runtime: nodejs12.x
       Handler: index.handler
       CodeUri: src/main/js/
       ReservedConcurrentExecutions: 5
