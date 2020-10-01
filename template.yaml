@@ -25,7 +25,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Runtime: java8
-      Handler: de.codeshield.cloudscan.App::handleRequest
+      Handler: de.codeshield.cloudscan.serverlessGoatJava.App::handleRequest
       # do not specify jar here as the template does. this will result in build error since maven is executed in the build process in this directory as it seems.
       CodeUri: ./
       ReservedConcurrentExecutions: 5

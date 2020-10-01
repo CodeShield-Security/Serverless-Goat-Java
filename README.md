@@ -9,20 +9,21 @@ fix license stuff before publishing. awe copied from serverless goat and the api
 
 Fist install sam: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html
 
+__MAKE SURE that you have at least sam-cli 1.3.2 installed. Otherwise, you will run into issues with the deployment__
+
 `sam local invoke`
 
-# IntelliJ AWS support for debugging and deployment
-
-
-https://aws.amazon.com/de/blogs/developer/aws-toolkit-for-intellij-now-generally-available/
 
 # deploy
 
 Make sure you have setup your aws cli: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-set-up-credentials.html
 
-__MAKE SURE that you have at least sam-cli 1.3.2 installed. Otherwise, you will run into issues with the deployment__
+User intellij plugin to deploy easily: 
+https://aws.amazon.com/de/blogs/developer/aws-toolkit-for-intellij-now-generally-available/
 
-__Also, do not try to run the deployment with docker containers '--use-containers', the java build will get stuck__
+I'll later add how to deploy from console.
+
+__Do not try to run the deployment with docker containers '--use-containers', the java build will get stuck__
 
 # Command used to create the lambda
 
