@@ -10,8 +10,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8d4d9590-ad0d-49aa-976d-96046a9192a5" name="Default Changelist" comment="update nodejs runtime">
-      <change afterPath="$PROJECT_DIR$/src/main/js/package.json" afterDir="false" />
+    <list default="true" id="8d4d9590-ad0d-49aa-976d-96046a9192a5" name="Default Changelist" comment="add missing packet json.&#10;fix indentation of serverless file">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/template.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/template.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +134,7 @@
       <option name="presentableId" value="Default" />
       <updated>1600780932916</updated>
       <workItem from="1600780937618" duration="1534000" />
-      <workItem from="1600782512541" duration="16581000" />
+      <workItem from="1600782512541" duration="19602000" />
     </task>
     <task id="LOCAL-00001" summary="initial lambda setup">
       <created>1600781886697</created>
@@ -199,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601030684812</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add missing packet json.&#10;fix indentation of serverless file">
+      <created>1601042885133</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1601042885134</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,7 +234,8 @@
     <MESSAGE value="move s3  init to constructor" />
     <MESSAGE value="add frontend and sam configuration" />
     <MESSAGE value="update nodejs runtime" />
-    <option name="LAST_COMMIT_MESSAGE" value="update nodejs runtime" />
+    <MESSAGE value="add missing packet json.&#10;fix indentation of serverless file" />
+    <option name="LAST_COMMIT_MESSAGE" value="add missing packet json.&#10;fix indentation of serverless file" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2427" y="-111" key="#[Local]_App" timestamp="1600855711637">
@@ -238,6 +246,10 @@
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
     <state x="2256" y="-3" key="#com.intellij.execution.impl.EditConfigurationsDialog/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600782422071" />
+    <state x="2555" y="144" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1601555338196">
+      <screen x="1536" y="-373" width="2519" height="1417" />
+    </state>
+    <state x="2555" y="144" key="#com.intellij.fileTypes.FileTypeChooser/1536.-373.2519.1417/0.23.1536.937@1536.-373.2519.1417" timestamp="1601555338196" />
     <state x="2539" y="211" width="535" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1600946017958">
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
@@ -250,6 +262,10 @@
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>
     <state width="415" height="466" key="DebuggerActiveHint/1536.-373.2512.1417/0.23.1536.937@1536.-373.2512.1417" timestamp="1600947150633" />
+    <state x="2795" y="-373" width="1259" height="1417" key="DiffContextDialog" timestamp="1601557008845">
+      <screen x="1536" y="-373" width="2519" height="1417" />
+    </state>
+    <state x="2795" y="-373" width="1259" height="1417" key="DiffContextDialog/1536.-373.2519.1417/0.23.1536.937@1536.-373.2519.1417" timestamp="1601557008845" />
     <state width="2470" height="409" key="GridCell.Tab.0.bottom" timestamp="1601032377207">
       <screen x="1536" y="-373" width="2512" height="1417" />
     </state>

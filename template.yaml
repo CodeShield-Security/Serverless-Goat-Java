@@ -26,7 +26,8 @@ Resources:
     Properties:
       Runtime: java8
       Handler: de.codeshield.cloudscan.App::handleRequest
-      CodeUri: ./target/serverless-goat-java.jar
+      # do not specify jar here as the template does. this will result in build error since maven is executed in the build process in this directory as it seems.
+      CodeUri: ./
       ReservedConcurrentExecutions: 5
       Environment:
         Variables:
@@ -47,16 +48,18 @@ Resources:
             BucketName: !Ref Bucket
 
   Table:
-    Type: AWS::Serverless::SimpleTable
+     Type: AWS::Serverless::SimpleTable
+
   Bucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      AccessControl: PublicRead
-      WebsiteConfiguration:
-        IndexDocument: index.html
-        ErrorDocument: index.html
+      Type: AWS::S3::Bucket
+      Properties:
+        AccessControl: PublicRead
+        WebsiteConfiguration:
+          IndexDocument: index.html
+          ErrorDocument: index.html
+
 Outputs:
-  WebsiteURL:
-    Description: 'Website URL'
-    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/${ServerlessRestApi.Stage}/'
+    WebsiteURL:
+      Description: 'Website URL'
+      Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/${ServerlessRestApi.Stage}/'
 

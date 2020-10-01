@@ -20,6 +20,10 @@ https://aws.amazon.com/de/blogs/developer/aws-toolkit-for-intellij-now-generally
 
 Make sure you have setup your aws cli: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-set-up-credentials.html
 
+__MAKE SURE that you have at least sam-cli 1.3.2 installed. Otherwise, you will run into issues with the deployment__
+
+__Also, do not try to run the deployment with docker containers '--use-containers', the java build will get stuck__
+
 # Command used to create the lambda
 
 ```
