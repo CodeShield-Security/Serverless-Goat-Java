@@ -1,5 +1,6 @@
 package de.codeshield.cloudscan.serverlessGoatJava;
 
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 import java.io.IOException;
 import java.net.URI;
@@ -8,15 +9,16 @@ import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystemNotFoundException;
 import java.nio.file.FileSystems;
+import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Manuel Benz 1.8.18
- */
+/** @author Manuel Benz 1.8.18 */
 public class IOUtils {
 
   /**
@@ -25,13 +27,13 @@ public class IOUtils {
    * folder "resname" will search in the classes package.
    *
    * @param resourceName ie.: "/SmartLibrary.dll"
-   * @param outDir       Directory to write to. A file with the resourceName will be created. in this
-   *                     directory
+   * @param outDir Directory to write to. A file with the resourceName will be created. in this
+   *     directory
    * @return The path to the exported resource
    * @throws Exception
    */
   public static Path copyResourceToFile(Class askingClass, String resourceName, Path outDir)
-          throws IOException {
+      throws IOException {
     Path outFile;
 
     final Path resourcePath = getResourcePath(askingClass, resourceName);
@@ -48,6 +50,52 @@ public class IOUtils {
     return outFile;
   }
 
+  /**
+   * Export all resources embedded under the given prefix in a Jar file to the local file path. The
+   * given resource name has to include the path of the resource. "/resname" will lead to searching
+   * the resource in the root folder, "resname" will search in the given class' package.
+   *
+   * @param askingClass Class that wants to acquire the resource. The class' package is used to root
+   *     the path of the searched resource.
+   * @param resourceName ie.: "/folder" to extract all content under "/folder"
+   * @param outDir Directory to write to.
+   * @throws Exception
+   * @return All paths of extracted files
+   */
+  public static Path copyResourceToFileRecursively(
+      Class askingClass, String resourceName, final Path outDir) throws IOException {
+
+    Path resourcePath = getResourcePath(askingClass, resourceName);
+
+    final Path outRoot = getOutPath(resourceName, outDir);
+
+    Files.walkFileTree(
+        resourcePath,
+        new SimpleFileVisitor<Path>() {
+          private Path currentTarget;
+
+          @Override
+          public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
+              throws IOException {
+            currentTarget = outRoot.resolve(resourcePath.relativize(dir).toString());
+            Files.createDirectories(currentTarget);
+            return FileVisitResult.CONTINUE;
+          }
+
+          @Override
+          public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
+              throws IOException {
+            Files.copy(
+                file, outRoot.resolve(resourcePath.relativize(file).toString()), REPLACE_EXISTING);
+            return FileVisitResult.CONTINUE;
+          }
+        });
+
+    closeFsIfNecessary(resourcePath);
+
+    return outRoot;
+  }
+
   private static void closeFsIfNecessary(Path resourcePath) throws IOException {
     try {
       resourcePath.getFileSystem().close();
@@ -61,7 +109,7 @@ public class IOUtils {
    *
    * @param askingClass
    * @param resourceName Resouce name relative to the package of the askingClass or to the resource
-   *                     root if prepended with "/".
+   *     root if prepended with "/".
    * @return
    * @throws IOException
    */
@@ -74,7 +122,7 @@ public class IOUtils {
 
       if (resource == null) {
         throw new IOException(
-                String.format("Resource %s not found for class %s", resourceName, askingClass));
+            String.format("Resource %s not found for class %s", resourceName, askingClass));
       }
 
       uri = resource.toURI();

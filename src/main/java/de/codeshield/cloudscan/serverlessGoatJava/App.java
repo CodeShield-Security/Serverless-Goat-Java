@@ -12,12 +12,15 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import de.codeshield.cloudscan.serverlessGoatJava.apiGateway.ApiGatewayRequest;
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -41,8 +44,10 @@ public class App implements RequestHandler<ApiGatewayRequest, Response> {
     s3Client = AmazonS3ClientBuilder.standard().withRegion(Regions.EU_CENTRAL_1).build();
 
     // acquire catdoc executable for later use
-    Path outDir = Files.createTempDirectory(System.currentTimeMillis() + "");
-    catdocExecutable = IOUtils.copyResourceToFile(getClass(), "/catdoc", outDir);
+    Path outDir = Paths.get(".");
+    IOUtils.copyResourceToFile(getClass(), "/.catdocrc", outDir);
+    catdocExecutable =
+        IOUtils.copyResourceToFileRecursively(getClass(), "/bin", outDir).resolve("catdoc");
   }
 
   private void log(Context context, ApiGatewayRequest request) {
@@ -93,12 +98,22 @@ public class App implements RequestHandler<ApiGatewayRequest, Response> {
 
   private InputStream getDocumentInputStream(String documentUrl) throws IOException {
 
-    String command =
-        String.format(
-            "curl --silent -L %s | /lib64/ld-linux-x86-64.so.2 %s -",
-            documentUrl, catdocExecutable.toAbsolutePath().toString());
+    // buffer the document in a file for easier use with process builder and catdoc
+    Path doc = Files.createTempFile("doc", System.currentTimeMillis() + "");
 
-    Process process = new ProcessBuilder("/bin/sh", "-c", command).start();
+    try (InputStream inputStream = new BufferedInputStream(new URL(documentUrl).openStream())) {
+      Files.write(doc, com.amazonaws.util.IOUtils.toByteArray(inputStream));
+    }
+
+    Process process =
+        new ProcessBuilder(
+                "/lib64/ld-linux-x86-64.so.2",
+                catdocExecutable.toString(),
+                doc.toAbsolutePath().toString())
+            .start();
+
+    Files.deleteIfExists(doc);
+
     return process.getInputStream();
   }
 }
