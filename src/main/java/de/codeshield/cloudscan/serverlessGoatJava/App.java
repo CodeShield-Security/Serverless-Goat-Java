@@ -12,16 +12,17 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import de.codeshield.cloudscan.serverlessGoatJava.apiGateway.ApiGatewayRequest;
+import de.codeshield.cloudscan.serverlessGoatJava.apiGateway.ApiGatewayResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import javax.ws.rs.core.Response;
 
 /**
  * Lambda function entry point. You can change to use other pojo type or implement a different
@@ -30,7 +31,7 @@ import javax.ws.rs.core.Response;
  * @see <a href=https://docs.aws.amazon.com/lambda/latest/dg/java-handler.html>Lambda Java
  *     Handler</a> for more information
  */
-public class App implements RequestHandler<ApiGatewayRequest, Response> {
+public class App implements RequestHandler<ApiGatewayRequest, ApiGatewayResponse> {
   private final AmazonS3 s3Client;
   private final Path catdocExecutable;
 
@@ -40,7 +41,7 @@ public class App implements RequestHandler<ApiGatewayRequest, Response> {
     // It is initialized when the class is loaded.
     s3Client = AmazonS3ClientBuilder.standard().withRegion(Regions.EU_CENTRAL_1).build();
 
-    // copy catdoc and charsets to filesystem and acquire catdoc executable for later use
+    // acquire catdoc executable for later use
     catdocExecutable = Paths.get("/var/task/bin/catdoc");
   }
 
@@ -62,7 +63,7 @@ public class App implements RequestHandler<ApiGatewayRequest, Response> {
   }
 
   @Override
-  public Response handleRequest(ApiGatewayRequest request, final Context context) {
+  public ApiGatewayResponse handleRequest(ApiGatewayRequest request, final Context context) {
     try {
       log(context, request);
 
@@ -80,14 +81,15 @@ public class App implements RequestHandler<ApiGatewayRequest, Response> {
               .withCannedAcl(CannedAccessControlList.PublicRead));
 
       String docLocation = String.format("%s/%s", System.getenv("BUCKET_URL"), key);
-      context.getLogger().log("docloc: " + docLocation);
-      return Response.status(302).header("Location", docLocation).build();
+
+      return new ApiGatewayResponse(
+          null, Collections.singletonMap("Location", docLocation), 302, false);
 
     } catch (Throwable e) {
       StringWriter sw = new StringWriter();
       e.printStackTrace(new PrintWriter(sw));
       String exceptionAsString = sw.toString();
-      return Response.status(500).entity(exceptionAsString).build();
+      return new ApiGatewayResponse(exceptionAsString, Collections.emptyMap(), 500, false);
     }
   }
 
@@ -95,7 +97,7 @@ public class App implements RequestHandler<ApiGatewayRequest, Response> {
 
     String command =
         String.format(
-            "curl --silent -L %s |  /lib64/ld-linux-x86-64.so.2 %s -",
+            "curl --silent -L %s | /lib64/ld-linux-x86-64.so.2 %s -",
             documentUrl, catdocExecutable.toAbsolutePath().toString());
 
     Process process = new ProcessBuilder("/bin/sh", "-c", command).start();
