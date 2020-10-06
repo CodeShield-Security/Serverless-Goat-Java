@@ -24,6 +24,7 @@ Resources:
   FunctionConvert:
     Type: AWS::Serverless::Function
     Properties:
+      # do not use amazonlinux2=java8.al2 runtime since it does not contain curl anymore
       Runtime: java8
       Handler: de.codeshield.cloudscan.serverlessGoatJava.App::handleRequest
       # do not specify jar here as the template does. this will result in build error since maven is executed in the build process in this directory as it seems.

@@ -13,6 +13,7 @@ __MAKE SURE that you have at least sam-cli 1.3.2 installed. Otherwise, you will 
 
 `sam local invoke`
 
+NOTE: The docker image used for local deployment does not have curl installed. The awslinux:1 image used after deploy does!
 
 # deploy
 
@@ -41,3 +42,12 @@ __Do not try to run the deployment with docker containers '--use-containers', th
 
 # Further hints
 - Accessing all sorts of context variables in java: https://willhamill.com/2016/12/12/aws-api-gateway-lambda-proxy-request-and-response-objects
+
+# Build something for amazon linux
+
+
+` docker run -v /Users/mbenz/Documents/privat/codeshield/repos/serverless/Serverless-Goat-Java/src/main/resources:/var/task/ -v /tmp/repo:/var/cache/yum/x86_64/2/amzn2-core  --rm -it amazonlinux:2 bash`
+`echo "diskspacecheck=0" >> /etc/yum.conf `
+`yum update`
+`yum groupinstall "Development Tools"`
+Do whatever you want to

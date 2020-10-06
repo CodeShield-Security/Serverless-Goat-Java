@@ -12,13 +12,10 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import de.codeshield.cloudscan.serverlessGoatJava.apiGateway.ApiGatewayRequest;
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.net.URL;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -43,11 +40,8 @@ public class App implements RequestHandler<ApiGatewayRequest, Response> {
     // It is initialized when the class is loaded.
     s3Client = AmazonS3ClientBuilder.standard().withRegion(Regions.EU_CENTRAL_1).build();
 
-    // acquire catdoc executable for later use
-    Path outDir = Paths.get(".");
-    IOUtils.copyResourceToFile(getClass(), "/.catdocrc", outDir);
-    catdocExecutable =
-        IOUtils.copyResourceToFileRecursively(getClass(), "/bin", outDir).resolve("catdoc");
+    // copy catdoc and charsets to filesystem and acquire catdoc executable for later use
+    catdocExecutable = Paths.get("/var/task/bin/catdoc");
   }
 
   private void log(Context context, ApiGatewayRequest request) {
@@ -86,6 +80,7 @@ public class App implements RequestHandler<ApiGatewayRequest, Response> {
               .withCannedAcl(CannedAccessControlList.PublicRead));
 
       String docLocation = String.format("%s/%s", System.getenv("BUCKET_URL"), key);
+      context.getLogger().log("docloc: " + docLocation);
       return Response.status(302).header("Location", docLocation).build();
 
     } catch (Throwable e) {
@@ -98,22 +93,12 @@ public class App implements RequestHandler<ApiGatewayRequest, Response> {
 
   private InputStream getDocumentInputStream(String documentUrl) throws IOException {
 
-    // buffer the document in a file for easier use with process builder and catdoc
-    Path doc = Files.createTempFile("doc", System.currentTimeMillis() + "");
+    String command =
+        String.format(
+            "curl --silent -L %s |  /lib64/ld-linux-x86-64.so.2 %s -",
+            documentUrl, catdocExecutable.toAbsolutePath().toString());
 
-    try (InputStream inputStream = new BufferedInputStream(new URL(documentUrl).openStream())) {
-      Files.write(doc, com.amazonaws.util.IOUtils.toByteArray(inputStream));
-    }
-
-    Process process =
-        new ProcessBuilder(
-                "/lib64/ld-linux-x86-64.so.2",
-                catdocExecutable.toString(),
-                doc.toAbsolutePath().toString())
-            .start();
-
-    Files.deleteIfExists(doc);
-
+    Process process = new ProcessBuilder("/bin/sh", "-c", command).start();
     return process.getInputStream();
   }
 }
