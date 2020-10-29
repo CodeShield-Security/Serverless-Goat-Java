@@ -1,53 +1,67 @@
-# Important!!
+## Introduction ##
+Thank you for using OWASP ServerlessGoat!
+​
+This serverless application demonstrates common serverless security flaws as described in the Serverless Security Top 10 Weaknesses guide [https://github.com/puresec/sas-top-10](https://github.com/puresec/sas-top-10).  ​
 
-fix license stuff before publishing. awe copied from serverless goat and the api gateway pojos from: https://github.com/willh/lambda-helloworld-config/blob/master/src/main/java/com/willhamill/lambda/apigateway/ApiGatewayRequest.java
+ServerlessGoat was created for the following educational purposes:
+* Teach developers & security practitioners about common serverless application layer risks and weaknesses 
+* Educate on how serverless application layer weaknesses can be exploited
+* Teach developers & security practitioners about serverless security best-practices  
+​
 
-# Build the application
-`mvn clean install`
+You can find more information about WebGoat at: [https://www.owasp.org/index.php/OWASP_Serverless_Goat](https://www.owasp.org/index.php/OWASP_Serverless_Goat)
 
-**To test the generated Lambda function locally with SAM CLI , you can run the following command.**
+**​WARNING 1**: This application contains vulnerabilities. Use it only for training purposes.  
+**WARNING 2**: This program is for educational purposes only. Do not attempt these techniques without authorization from application owners.  ​
 
-Fist install sam: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html
+**NOTE**: The application was developed in such way that should not put your AWS account at risk. The vulnerabilities that were introduced are contained within the boundaries of this specific application. Nevertheless, users are not encouraged to deploy the application in production environments.
 
-__MAKE SURE that you have at least sam-cli 1.3.2 installed. Otherwise, you will run into issues with the deployment__
 
+# Local Testing
+
+Install [AWS Sam](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) in version > 1.3.2
+
+`sam build`
 `sam local invoke`
 
 NOTE: The docker image used for local deployment does not have curl installed. The awslinux:1 image used after deploy does!
 
 # deploy
 
-Make sure you have setup your aws cli: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-set-up-credentials.html
+Requires [AWS CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-set-up-credentials.html)
 
-User intellij plugin to deploy easily: 
-https://aws.amazon.com/de/blogs/developer/aws-toolkit-for-intellij-now-generally-available/
+`sam build`
+`sam deploy`
+​
+## Cheat-Sheet ##
 
-I'll later add how to deploy from console.
+The full walkthrough of the lessons (under development) can be found in the [LESSONS.md](https://github.com/OWASP/Serverless-Goat/blob/master/LESSONS.md) file
 
-__Do not try to run the deployment with docker containers '--use-containers', the java build will get stuck__
+The following security issues exist in the application:
+​
+* Event-data injection, leading to OS command injection (SAS-01)
+  * Users can invoke the API with a `document_url` parameter value containing Linux OS commands. E.g. `; ls -LF`
+* Improper exception handling and verbose error messages (SAS-10), leading to sensitive information disclosure
+  * For example, invoking the API without the required parameter will return a verbose stack trace/exception
+* Insecure Serverless Deployment Configuration (SAS-03)
+  * Publicly open S3 bucket (its name can be discovered from the subdomain/prefix of the URL)
+  * The parameter `document_url` is not defined as a 'required' parameter in API gateway and can be ommitted
+* Over-privileged function permissions & roles, leading to data leakage of information stored in a DynamoDB table (SAS-04)
+  * The function has CRUD permissions on the Dynamo table, which can be abused for reading sensitive data, or manipulating data
+  * The function has FullAccess policy on the S3 bucket, leading to data tampering and data leakage, etc.
+* Inadequate function monitoring and logging (SAS-05) - the application doesn't properly log application layer attacks and errors (can be demonstrated through CloudWatch/CloudTrail)
+* Insecure 3rd Party Dependencies (SAS-06) - can be detected by scanning the project with an OSS scanning tool
+  * The vulnerable package is `node-uuid` 
+* Application layer Denial of Service (SAS-08), which can be easily demonstrated
+  * An attacker may invoke the API recursively multiple times, essentially spawning enough instances to reach the function's reserved capacity limit (which is set to 5). For example:
+    ```
+    https://i92uw6vw73.execute-api.us-east-1.amazonaws.com/Prod/api/convert?document_url=https%3A%2F%2Fi92uw6vw73.execute-api.us-east-1.amazonaws.com%2FProd%2Fapi%2Fconvert%3Fdocument_url...
+    ``` 
+* An undisclosed *critical* issue, as a bonus! 
 
-# Command used to create the lambda
-
-```
- mvn org.apache.maven.plugins:maven-archetype-plugin:3.1.0:generate \                                                                                                                                                1 ↵  10265  15:36:44
-    -DarchetypeGroupId=software.amazon.awssdk \
-    -DarchetypeArtifactId=archetype-lambda \
-    -DarchetypeVersion=2.14.22 \
-    -DgroupId=de.codeshield.cloudscan \
-    -DartifactId=serverless-goat-java \
-    -Dservice=s3  \
-    -Dregion=eu-central-1 \
-    -DinteractiveMode=false
-```
-
-# Further hints
-- Accessing all sorts of context variables in java: https://willhamill.com/2016/12/12/aws-api-gateway-lambda-proxy-request-and-response-objects
-
-# Build something for amazon linux
+## Acknowledgements ##
+ServerlessGoat was initially created and contributed to OWASP by Yuri Shapira & Ory Segal, [PureSec](https://www.puresec.io/).
+ServerlessGoat for Java was adopbted by Manuel Benz and Johannes Späth, [​CodeShield](www.codeshield.de) 
 
 
-` docker run -v /Users/mbenz/Documents/privat/codeshield/repos/serverless/Serverless-Goat-Java/src/main/resources:/var/task/ -v /tmp/repo:/var/cache/yum/x86_64/2/amzn2-core  --rm -it amazonlinux:2 bash`
-`echo "diskspacecheck=0" >> /etc/yum.conf `
-`yum update`
-`yum groupinstall "Development Tools"`
-Do whatever you want to
+

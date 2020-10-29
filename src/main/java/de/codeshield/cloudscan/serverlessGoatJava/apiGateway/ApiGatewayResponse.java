@@ -1,8 +1,13 @@
+/**
+ * 29.10.2020 Copied from https://github.com/willh/lambda-helloworld-config/
+ *
+ * License: MIT
+ */
+
 package de.codeshield.cloudscan.serverlessGoatJava.apiGateway;
 
 import java.util.Map;
 
-/** @author Manuel Benz at 06.10.20 */
 public class ApiGatewayResponse {
   private final String body;
   private final Map<String, String> headers;

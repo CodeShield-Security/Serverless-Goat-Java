@@ -1,3 +1,9 @@
+/**
+ * 29.10.2020 Copied from https://github.com/willh/lambda-helloworld-config/
+ *
+ * License: MIT
+ */
+
 package de.codeshield.cloudscan.serverlessGoatJava.apiGateway;
 
 
