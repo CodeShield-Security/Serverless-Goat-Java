@@ -1,7 +1,9 @@
+**This repository contains a Java adoption of the original [OWASP Serverless Goat](https://github.com/OWASP/Serverless-Goat) application.**
+
 ## Introduction ##
 Thank you for using OWASP ServerlessGoat!
 ​
-This serverless application demonstrates common serverless security flaws as described in the Serverless Security Top 10 Weaknesses guide [https://github.com/puresec/sas-top-10](https://github.com/puresec/sas-top-10).  ​
+This serverless application demonstrates common serverless security flaws as described in the official [OWASP Top 10 Serverless Interpretations](https://owasp.org/www-project-serverless-top-10/) and th Serverless Security Top 10 Weaknesses guide [https://github.com/puresec/sas-top-10](https://github.com/puresec/sas-top-10).  ​
 
 ServerlessGoat was created for the following educational purposes:
 * Teach developers & security practitioners about common serverless application layer risks and weaknesses 
@@ -22,15 +24,16 @@ You can find more information about WebGoat at: [https://www.owasp.org/index.php
 Install [AWS Sam](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) in version > 1.3.2
 
 `sam build`
+
 `sam local invoke`
 
-NOTE: The docker image used for local deployment does not have curl installed. The awslinux:1 image used after deploy does!
 
 # deploy
 
 Requires [AWS CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-set-up-credentials.html)
 
 `sam build`
+
 `sam deploy`
 ​
 ## Cheat-Sheet ##
@@ -50,8 +53,7 @@ The following security issues exist in the application:
   * The function has CRUD permissions on the Dynamo table, which can be abused for reading sensitive data, or manipulating data
   * The function has FullAccess policy on the S3 bucket, leading to data tampering and data leakage, etc.
 * Inadequate function monitoring and logging (SAS-05) - the application doesn't properly log application layer attacks and errors (can be demonstrated through CloudWatch/CloudTrail)
-* Insecure 3rd Party Dependencies (SAS-06) - can be detected by scanning the project with an OSS scanning tool
-  * The vulnerable package is `node-uuid` 
+* Insecure 3rd Party Dependencies (SAS-06) - can be detected by scanning the project with a SCA scanning tool. 
 * Application layer Denial of Service (SAS-08), which can be easily demonstrated
   * An attacker may invoke the API recursively multiple times, essentially spawning enough instances to reach the function's reserved capacity limit (which is set to 5). For example:
     ```
@@ -61,7 +63,7 @@ The following security issues exist in the application:
 
 ## Acknowledgements ##
 ServerlessGoat was initially created and contributed to OWASP by Yuri Shapira & Ory Segal, [PureSec](https://www.puresec.io/).
-ServerlessGoat for Java was adopbted by Manuel Benz and Johannes Späth, [​CodeShield](www.codeshield.de) 
+ServerlessGoat for Java was adopbted by Manuel Benz and Johannes Spaeth, [​CodeShield](www.codeshield.de) 
 
 
 
