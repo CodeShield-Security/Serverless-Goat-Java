@@ -2,14 +2,14 @@
 
 ## Introduction ##
 Thank you for using OWASP ServerlessGoat!
-​
-This serverless application demonstrates common serverless security flaws as described in the official [OWASP Top 10 Serverless Interpretations](https://owasp.org/www-project-serverless-top-10/) and th Serverless Security Top 10 Weaknesses guide [https://github.com/puresec/sas-top-10](https://github.com/puresec/sas-top-10).  ​
+
+This serverless application demonstrates common serverless security flaws as described in the official [OWASP Top 10 Serverless Interpretations](https://owasp.org/www-project-serverless-top-10/) and the Serverless Security Top 10 Weaknesses guide [https://github.com/puresec/sas-top-10](https://github.com/puresec/sas-top-10).  
 
 ServerlessGoat was created for the following educational purposes:
 * Teach developers & security practitioners about common serverless application layer risks and weaknesses 
 * Educate on how serverless application layer weaknesses can be exploited
 * Teach developers & security practitioners about serverless security best-practices  
-​
+
 
 You can find more information about WebGoat at: [https://www.owasp.org/index.php/OWASP_Serverless_Goat](https://www.owasp.org/index.php/OWASP_Serverless_Goat)
 
@@ -63,7 +63,7 @@ The following security issues exist in the application:
 
 ## Acknowledgements ##
 ServerlessGoat was initially created and contributed to OWASP by Yuri Shapira & Ory Segal, [PureSec](https://www.puresec.io/).
-ServerlessGoat for Java was adopbted by Manuel Benz and Johannes Spaeth, [​CodeShield](www.codeshield.de) 
+ServerlessGoat for Java was adopted by Manuel Benz and Johannes Spaeth, [CodeShield](www.codeshield.de) 
 
 
 
