@@ -63,7 +63,7 @@ The following security issues exist in the application:
 
 ## Acknowledgements ##
 ServerlessGoat was initially created and contributed to OWASP by Yuri Shapira & Ory Segal, [PureSec](https://www.puresec.io/).
-ServerlessGoat for Java was adopted by Manuel Benz and Johannes Spaeth, [CodeShield](hhtps://www.codeshield.io) 
+ServerlessGoat for Java was adopted by Manuel Benz and Johannes Spaeth, [CodeShield](https://www.codeshield.io) 
 
 
 
