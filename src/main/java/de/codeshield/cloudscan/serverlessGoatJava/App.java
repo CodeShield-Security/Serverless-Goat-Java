@@ -6,13 +6,13 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
+import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import de.codeshield.cloudscan.serverlessGoatJava.apiGateway.ApiGatewayRequest;
-import de.codeshield.cloudscan.serverlessGoatJava.apiGateway.ApiGatewayResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -31,7 +31,8 @@ import java.util.UUID;
  * @see <a href=https://docs.aws.amazon.com/lambda/latest/dg/java-handler.html>Lambda Java
  *     Handler</a> for more information
  */
-public class App implements RequestHandler<ApiGatewayRequest, ApiGatewayResponse> {
+public class App
+    implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
   private final AmazonS3 s3Client;
   private final Path catdocExecutable;
 
@@ -45,7 +46,7 @@ public class App implements RequestHandler<ApiGatewayRequest, ApiGatewayResponse
     catdocExecutable = Paths.get("/var/task/bin/catdoc");
   }
 
-  private void log(Context context, ApiGatewayRequest request) {
+  private void log(Context context, APIGatewayProxyRequestEvent request) {
 
     AmazonDynamoDB docClient =
         AmazonDynamoDBClientBuilder.standard().withRegion(Regions.EU_CENTRAL_1).build();
@@ -59,11 +60,13 @@ public class App implements RequestHandler<ApiGatewayRequest, ApiGatewayResponse
     item.put("ip", new AttributeValue(ip));
     item.put("document_url", new AttributeValue(documentUrl));
 
+    context.getLogger().log(item.toString());
     docClient.putItem(System.getenv("TABLE_NAME"), item);
   }
 
   @Override
-  public ApiGatewayResponse handleRequest(ApiGatewayRequest request, final Context context) {
+  public APIGatewayProxyResponseEvent handleRequest(
+      APIGatewayProxyRequestEvent request, final Context context) {
     try {
       log(context, request);
 
@@ -82,14 +85,15 @@ public class App implements RequestHandler<ApiGatewayRequest, ApiGatewayResponse
 
       String docLocation = String.format("%s/%s", System.getenv("BUCKET_URL"), key);
 
-      return new ApiGatewayResponse(
-          null, Collections.singletonMap("Location", docLocation), 302, false);
+      return new APIGatewayProxyResponseEvent()
+          .withHeaders(Collections.singletonMap("Location", docLocation))
+          .withStatusCode(302);
 
     } catch (Throwable e) {
       StringWriter sw = new StringWriter();
       e.printStackTrace(new PrintWriter(sw));
       String exceptionAsString = sw.toString();
-      return new ApiGatewayResponse(exceptionAsString, Collections.emptyMap(), 500, false);
+      return new APIGatewayProxyResponseEvent().withBody(exceptionAsString).withStatusCode(500);
     }
   }
 

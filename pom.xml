@@ -69,6 +69,12 @@
             <artifactId>aws-java-sdk-core</artifactId>
             <version>1.11.845</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-lambda-java-events</artifactId>
+            <version>2.2.9</version>
+        </dependency>
     </dependencies>
 
     <build>
