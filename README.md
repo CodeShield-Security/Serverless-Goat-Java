@@ -19,6 +19,29 @@ You can find more information about WebGoat at: [https://www.owasp.org/index.php
 **NOTE**: The application was developed in such way that should not put your AWS account at risk. The vulnerabilities that were introduced are contained within the boundaries of this specific application. Nevertheless, users are not encouraged to deploy the application in production environments.
 
 
+# Deployment
+
+## Prebuild 
+
+1. Make sure you are logged into your AWS account
+2. Click on the following link: [AWS Serverless Application Repository](https://eu-central-1.console.aws.amazon.com/lambda/home?region=eu-central-1#/create/app?applicationId=arn:aws:serverlessrepo:eu-central-1:217096764149:applications/Serverless-Goat-Java
+   )
+3. Click `Deploy`
+4. Click `Deploy` (again)
+5. Wait until you see the message `Your application has been deployed`
+6. Click on `View CloudFormation Stack`
+7. Under `Outputs` you will find the URL for the application (WebsiteURL)
+
+
+## From source code
+
+Requires [AWS CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-set-up-credentials.html)
+
+`sam build`
+
+`sam deploy`
+
+
 # Local Testing
 
 Install [AWS Sam](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) in version > 1.3.2
@@ -27,15 +50,6 @@ Install [AWS Sam](https://docs.aws.amazon.com/serverless-application-model/lates
 
 `sam local invoke`
 
-
-# deploy
-
-Requires [AWS CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started-set-up-credentials.html)
-
-`sam build`
-
-`sam deploy`
-​
 ## Cheat-Sheet ##
 
 The full walkthrough of the lessons (under development) can be found in the [LESSONS.md](https://github.com/OWASP/Serverless-Goat/blob/master/LESSONS.md) file
