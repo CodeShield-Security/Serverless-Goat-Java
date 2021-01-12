@@ -1,6 +1,20 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: Serverless-Goat-Java
+    Description: 'Serverless Goat Java is an intentionally vulnerable serverless application containing instances of eight of the ten most critical serverless application vulnerabilities for security training purposes.'
+    Author: Manuel Benz
+    SpdxLicenseId: AGPL-3.0-only
+    LicenseUrl: LICENSE
+    ReadmeUrl: README.md
+    Labels: ['Serverless', 'Security', 'AWS', 'ServerlessGoat', 'Lambda']
+    HomePageUrl: https://codeshield.io/blog/2020/11/06/serverless_goat_repo/
+    SemanticVersion: 1.0.0
+    SourceCodeUrl: https://github.com/CodeShield-Security/Serverless-Goat-Java
+
+
 Globals:
   Function:
     MemorySize: 3008
@@ -61,4 +75,6 @@ Outputs:
     WebsiteURL:
       Description: 'Website URL'
       Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/${ServerlessRestApi.Stage}/'
+
+
 
