@@ -14,6 +14,6 @@ default:
 
 publish:	
 	aws serverlessrepo put-application-policy \
-	--application-id arn:aws:serverlessrepo:eu-central-1:028938425188:applications/Serverless-Goat-Java \
+	--application-id <APP-ARN> \
 	--statements Principals=*,Actions=Deploy \
 	--profile testing
