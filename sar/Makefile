@@ -1,0 +1,19 @@
+
+default:
+	# call sam deploy --guided once to create a proper config file
+	sam build
+	sam deploy --no-fail-on-empty-changeset  --no-confirm-changeset
+
+	cd ..; sam build; \
+	sam package \
+	--template-file ./template.yaml \
+	--output-template-file .aws-sam/build/package.yaml \
+	--s3-bucket serverless-goat-packages
+	cd ..; sam publish --template .aws-sam/build/package.yaml
+
+
+publish:	
+	aws serverlessrepo put-application-policy \
+	--application-id arn:aws:serverlessrepo:eu-central-1:028938425188:applications/Serverless-Goat-Java \
+	--statements Principals=*,Actions=Deploy \
+	--profile testing
