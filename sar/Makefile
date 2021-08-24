@@ -1,7 +1,7 @@
 
 default:
 	# call sam deploy --guided once to create a proper config file
-	sam build
+	sam build --template-file ./vulnerable.yaml
 	sam deploy --no-fail-on-empty-changeset  --no-confirm-changeset
 	aws s3 cp sensitive.info s3://serverless-goat-packages
 

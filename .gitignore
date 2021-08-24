@@ -174,3 +174,5 @@ buildNumber.properties
 
 .aws-sam
 .idea
+
+**/samconfig.toml

@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  ServerlessGoatPackages:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: "serverless-goat-packages"
+
+  ServerlessGoatPackagesPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      Bucket: !Ref ServerlessGoatPackages
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: ServerlessRepoAccess
+            Action:
+              - 's3:GetObject'
+            Effect: Allow
+            Resource: !Sub "arn:aws:s3:::${ServerlessGoatPackages}/*"
+            Principal: 
+              Service: "serverlessrepo.amazonaws.com"
+            Condition:
+              StringEquals:
+                "aws:SourceAccount": "AWS::AccountId"
