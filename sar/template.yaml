@@ -7,7 +7,7 @@ Resources:
       Properties:
         BucketName: "serverless-goat-packages"
 
-  SampleBucketPolicy:
+  ServerlessGoatPackagesPolicy:
     Type: 'AWS::S3::BucketPolicy'
     Properties:
       Bucket: !Ref ServerlessGoatPackages
