@@ -21,12 +21,3 @@ Resources:
             Resource: !Sub "arn:aws:s3:::${ServerlessGoatPackages}/*"
             Principal: 
               Service: "serverlessrepo.amazonaws.com"
-
-
-Outputs:
-    ServerlessGoatPackages:
-      Description: 'Bucket to store Serverless-Goat for the Serverless Application Repository'
-      Value: !Ref ServerlessGoatPackages
-
-
-
