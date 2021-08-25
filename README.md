@@ -24,7 +24,7 @@ You can find more information about WebGoat at: [https://www.owasp.org/index.php
 ## Prebuild 
 
 1. Make sure you are logged into your AWS account
-2. Click on the following link: [AWS Serverless Application Repository](https://eu-central-1.console.aws.amazon.com/lambda/home?region=eu-central-1#/create/app?applicationId=arn:aws:serverlessrepo:eu-central-1:028938425188:applications/Serverless-Goat-Java
+2. Click on the following link: [AWS Serverless Application Repository](https://serverlessrepo.aws.amazon.com/applications/eu-central-1/028938425188/Serverless-Goat-Java
    )
 3. Click `Deploy`
 4. Click `Deploy` (again)
@@ -49,6 +49,10 @@ Install [AWS Sam](https://docs.aws.amazon.com/serverless-application-model/lates
 `sam build`
 
 `sam local invoke`
+
+# Deploying to AWS Serverless Application Repository
+
+See contents of `sar` folder. Especially the [README.md](sar/README.md).
 
 ## Cheat-Sheet ##
 
