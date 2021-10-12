@@ -12,6 +12,9 @@ The content of this folder helps to easily deploy Serverless-Goat-Java to AWS SA
 ### Steps to deploy to SAR
 __Care: By default, a vulnerable template configuration will be used for the deployment!__
 1. Enter the directory that contains this file
-2. Invoke `make` and configure sam as required
-3. Copy the ARN of your newly created SAR app and replace `<APP-ARN` in the `Makefile` with it.
-4. Invoke `make publish` to make the newly created SAR app publicly accessible by everyone.
+2. Invoke `make create-bucket` to create a bucket with for all necessary artifacts. Configure sam as required. Beware that this bucket will be vulnerable ad `vulnerable.yaml`, as described above, will be used by default.
+3. Invoke `make deploy` to deploy the app to the Serverless Application Repository
+4. Copy the ARN of your newly created SAR app and replace `<APP-ARN` in the `Makefile` with it.
+5. Invoke `make publish` to make the newly created SAR app publicly accessible by everyone.
+
+__Note__: All make commands can be executed with an AWS profile for authentication. E.g., `make deploy PROFILE=testing`
